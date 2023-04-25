@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect
 from loginform import LoginForm
+from registerform import RegisterForm
 
 
 app = Flask(__name__)
@@ -13,6 +14,12 @@ def login():
     if form.validate_on_submit():
         return redirect('/login')
     return render_template('login.html', title='Электронный дневник', form=form)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    return render_template('register.html', title='Регистрация', form=form)
 
 
 if __name__ == '__main__':
