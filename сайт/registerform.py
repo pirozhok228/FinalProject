@@ -11,5 +11,5 @@ class RegisterForm(FlaskForm):
     name = StringField('Имя', validators=[DataRequired()])
     father = StringField('Отчество', validators=[DataRequired()])
     schoolclass = StringField('Класс', validators=[DataRequired()])
-    submit = SubmitField('Зарегистрироваться')
     status = SelectField('Выберете тип аккаунта', choices=['ученик', 'учитель'])
+    submit = SubmitField('Зарегистрироваться')
