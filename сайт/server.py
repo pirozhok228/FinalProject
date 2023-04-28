@@ -133,9 +133,13 @@ def marks_teacher():
             i.english = marksform.english.data
             db_sess.commit()
         else:
+            a = db_sess.query(User).filter((User.surname == marksform.student.data.split()[0]) and
+                                           (User.name == marksform.student.data.split()[1])).first()
             mark = Marks()
             mark.surname = marksform.student.data.split()[0]
             mark.name = marksform.student.data.split()[1]
+            mark.user_email = a.email
+            print(a.email)
             mark.math = marksform.math.data
             mark.russian = marksform.russian.data
             mark.biology = marksform.biology.data
