@@ -108,7 +108,8 @@ def delete():
     global user
     logout_user()
     db_sess = db_session.create_session()
-    db_sess.delete(user)
+    a = db_sess.query(User).filter(User.id == user.id).first()
+    db_sess.delete(a)
     db_sess.commit()
     return redirect('/login')
 
@@ -121,16 +122,30 @@ def marks_teacher():
     if request.method == 'POST':
         i = db_sess.query(Marks).filter((Marks.surname == marksform.student.data.split()[0]) and
                                              (Marks.name == marksform.student.data.split()[1])).first()
-        print(i)
-        i.math = marksform.math.data
-        i.russian = marksform.russian.data
-        i.biology = marksform.biology.data
-        i.chemistry = marksform.chemistry.data
-        i.geografy = marksform.geografy.data
-        i.history = marksform.history.data
-        i.phisics = marksform.phisics.data
-        i.english = marksform.english.data
-        db_sess.commit()
+        if i:
+            i.math = marksform.math.data
+            i.russian = marksform.russian.data
+            i.biology = marksform.biology.data
+            i.chemistry = marksform.chemistry.data
+            i.geografy = marksform.geografy.data
+            i.history = marksform.history.data
+            i.phisics = marksform.phisics.data
+            i.english = marksform.english.data
+            db_sess.commit()
+        else:
+            mark = Marks()
+            mark.surname = marksform.student.data.split()[0]
+            mark.name = marksform.student.data.split()[1]
+            mark.math = marksform.math.data
+            mark.russian = marksform.russian.data
+            mark.biology = marksform.biology.data
+            mark.chemistry = marksform.chemistry.data
+            mark.geografy = marksform.geografy.data
+            mark.history = marksform.history.data
+            mark.phisics = marksform.phisics.data
+            mark.english = marksform.english.data
+            db_sess.add(mark)
+            db_sess.commit()
     return render_template('teacher_account.html', title='Оценки', username=username, marks=mark,
                            users=db_sess.query(User).filter(User.status == 'ученик').all(), form=marksform)
 
