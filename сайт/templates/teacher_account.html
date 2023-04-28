@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <header>
+    <nav class="navbar navbar-light bg-light">
+      <p class="navbar-brand">Электронный дневник</p>
+      <a class="navbar-brand" href="http://127.0.0.1:8080/profile">{{ username }}</a>
+    </nav>
+  </header>
+<form action="" method="post">
+  <p style="margin-left:10px">
+    {{ form.student.label }}
+    {{ form.student }}
+  </p>
+  <p>{{ error }}</p>
+  <table border="1" style="margin-left:10px;">
+    <tr>
+      <td>математика</td>
+      <td><p>{{ form.math }}</p></td>
+    </tr>
+    <tr>
+      <td>русский язык</td>
+      <td><p>{{ form.russian }}</p></td>
+    </tr>
+    <tr>
+      <td>физика</td>
+      <td><p>{{ form.phisics }}</p></td>
+    </tr>
+    <tr>
+      <td>химия</td>
+      <td><p>{{ form.chemistry }}</p></td>
+    </tr>
+    <tr>
+      <td>биология</td>
+      <td><p>{{ form.biology }}</p></td>
+    </tr>
+    <tr>
+      <td>география</td>
+      <td><p>{{ form.geografy }}</p></td>
+    </tr>
+    <tr>
+      <td>история</td>
+      <td><p>{{ form.history }}</p></td>
+    </tr>
+    <tr>
+      <td>английский язык</td>
+      <td><p>{{ form.english }}</p></td>
+    </tr>
+  </table>
+  <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+
+{% endblock %}

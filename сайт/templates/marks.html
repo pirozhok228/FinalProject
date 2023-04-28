@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <header>
+    <nav class="navbar navbar-light bg-light">
+      <p class="navbar-brand">Электронный дневник</p>
+      <a class="navbar-brand" href="http://127.0.0.1:8080/profile">{{ username }}</a>
+    </nav>
+  </header>
+  <table border="1" style="margin-left:10px;">
+    <tr>
+      <td>математика</td>
+      {% for math in marks.math %}
+      <td>{{math}}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td>русский язык</td>
+      <td>{{marks.russian}}</td>
+    </tr>
+    <tr>
+      <td>физика</td>
+      <td>{{marks.phisics}}</td>
+    </tr>
+    <tr>
+      <td>химия</td>
+      <td>{{marks.chemistry}}</td>
+    </tr>
+    <tr>
+      <td>биология</td>
+      <td>{{marks.biology}}</td>
+    </tr>
+    <tr>
+      <td>география</td>
+      <td>{{marks.geografy}}</td>
+    </tr>
+    <tr>
+      <td>история</td>
+      <td>{{marks.history}}</td>
+    </tr>
+    <tr>
+      <td>английский язык</td>
+      <td>{{marks.english}}</td>
+    </tr>
+  </table>
+
+{% endblock %}

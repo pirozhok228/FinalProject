@@ -1,5 +1,6 @@
 import sqlalchemy
 from flask_login import UserMixin
+from sqlalchemy import orm
 from .db_session import SqlAlchemyBase
 
 
@@ -16,4 +17,6 @@ class User(SqlAlchemyBase, UserMixin):
     email = sqlalchemy.Column(sqlalchemy.String,
                               unique=True, nullable=True)
     password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+
+    marks = orm.relationship("Marks", back_populates='user')
 
